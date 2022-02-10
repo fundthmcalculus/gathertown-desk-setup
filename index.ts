@@ -26,6 +26,14 @@ game.subscribeToEvent("mapSetObjects", (data, context) => {
     }
 })
 
+game.subscribeToEvent("playerChats", (data, context) => {
+    console.log(data, context)
+})``
+
+game.subscribeToEvent("playerInteracts", (data, context) => {
+    console.log(data, context)
+})
+
 function setRickRollTrap(playerName: string) {
     game.subscribeToEvent("playerJoins", (data, context) => {
         setTimeout(async () => {
@@ -55,11 +63,12 @@ function roombaChasePlayer(playerName: string) {
             const player = game.getPlayer(context.playerId!)
             if (player.name.toLowerCase().includes(playerName.toLowerCase())) {
                 console.log("Jaws time")
-                game.playSound("https://orangefreesounds.com/wp-content/uploads/2016/04/Jaws-theme-song.mp3", 0.3, context.playerId!)
+                // game.playSound("https://orangefreesounds.com/wp-content/uploads/2016/04/Jaws-theme-song.mp3", 0.3, context.playerId!)
                 const killerRoomba = new Roomba(game)
                 killerRoomba.routeRoomba({x: player.x, y: player.y})
+                // killerRoomba.routeRoomba({x: 43, y: 16})
             }
         }, 5000)
     })
 }
-// roombaChasePlayer("cinthya")
+roombaChasePlayer("phillis")
